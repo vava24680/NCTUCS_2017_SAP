@@ -14,6 +14,7 @@ done
 echo -e "\nStatus : ${status}"
 url=`curl -b cookie-jar.txt -c cookie-jar.txt https://portal.nctu.edu.tw/portal/relay.php?D=cos | node extractFormdata.js`
 curl -s -b cookie-jar.txt -c cookie-jar.txt -d "${url}" https://course.nctu.edu.tw/index.asp
+clear
 curl -b cookie-jar.txt https://course.nctu.edu.tw/adSchedule.asp -o - | iconv -f big5 -t utf-8 | \
 	grep -E "<tr>	<td|		.*<br>|<font.+><h2>&nbsp" | \
 	sed -e 's/	//g;s/<br>//g;s///g;' | \
