@@ -2,8 +2,8 @@
 touch cookie-jar.txt
 status=0
 while [ $status -eq 0 ] ; do
-	account=`dialog --output-fd 1 --inputbox "Portal account" 20 20`
-	password=`dialog --output-fd 1 --insecure --passwordbox "Password" 20 20`
+	account=`dialog --output-fd 1 --inputbox "請輸入學號" 20 20`
+	password=`dialog --output-fd 1 --insecure --passwordbox "請輸入單一登入系統der密碼" 20 20`
 	curl -s -c cookie-jar.txt https://portal.nctu.edu.tw/captcha/pic.php
 	curl -s -b cookie-jar.txt -c cookie-jar.txt https://portal.nctu.edu.tw/captcha/pitctest/pic.php -o captcha.png
 	captcha_num=`curl -s -F 'image=@./captcha.png' -i https://nasa.cs.nctu.edu.tw/sap/2017/hw2/captcha-solver/api/ | awk 'NR==8 {printf("%d",$1)}'`
